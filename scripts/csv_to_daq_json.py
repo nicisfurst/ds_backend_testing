@@ -3,6 +3,7 @@ Converts CSV files exported from Motec into json files in the same format
 used by DAQ.
 """
 
+from re import M
 import pandas as pd
 from sys import argv
 from json import dump
@@ -18,7 +19,19 @@ CHANNELS = [
     'CG Accel Vertical',
     'Ground Speed',
     'Steering Angle',
-    'Throttle Pos'
+    'Throttle Pos',
+    'Car Coord X',
+    'Car Coord Y',
+    'Car Coord Z',
+    'Engine RPM',
+    'Tire Pressure FL',
+    'Tire Pressure FR',
+    'Tire Pressure RL',
+    'Tire Pressure RR',
+    'Tire Temp Middle FL',
+    'Tire Temp Middle FR',
+    'Tire Temp Middle RL',
+    'Tire Temp Middle RR',
     ]
 
 
@@ -26,7 +39,6 @@ def main():
     units, df = get_cleaned_csv()
     js = make_json(units, df)
     save_json(js)
-    # save_json({'apple': ['orange', 'pear']})
     
     
 def get_cleaned_csv():
